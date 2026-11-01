@@ -9,7 +9,7 @@
 :root{
   --c1:#5b0fa8; --c2:#8a3df0;
   --fg:#ffffff; --fg2:rgba(255,255,255,.84); --line:rgba(255,255,255,.3);
-  --glass:rgba(14,6,30,.34); --paper:#ffffff; --ink:#120a1f;
+  --deep:#0e061e; --glass:color-mix(in srgb,var(--deep) 38%,transparent); --paper:#ffffff; --ink:#120a1f;
   --display:'Anton','Impact','Arial Narrow',sans-serif;
   --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
   --ease:cubic-bezier(.2,.9,.2,1);
@@ -480,7 +480,7 @@ const ME={name:'Gaushik Kumar Ganesan',email:'gaushikkumarganesan@gmail.com'};
 const THEMES=[
   {word:'BUILD',glyph:'{ }',c1:'#5b0fa8',c2:'#8a3df0',label:'Violet'},
   {word:'CRAFT',glyph:'✦',c1:'#c81e4a',c2:'#ff5c86',label:'Crimson'},
-  {word:'SHIP',glyph:'▶',c1:'#e9590f',c2:'#ffb347',label:'Amber'},
+  {word:'SHIP',glyph:'▶',c1:'#041A53',c2:'#0059FF',deep:'#030923',label:'Blue'},
   {word:'CODE',glyph:'</>',c1:'#12803f',c2:'#3fdc7e',label:'Green'}
 ];
 const FOCUS={
@@ -507,7 +507,7 @@ THEMES.forEach((t,i)=>{
   sws.append(b);
 });
 function paintSw(){$$('.sw').forEach((b,i)=>b.setAttribute('aria-pressed',i===cur))}
-function applyVars(t){root.style.setProperty('--c1',t.c1);root.style.setProperty('--c2',t.c2)}
+function applyVars(t){root.style.setProperty('--c1',t.c1);root.style.setProperty('--c2',t.c2);root.style.setProperty('--deep',t.deep||'#0e061e')}
 function wipe(t,x,y){
   return new Promise(res=>{
     const w=$('#wipe');
