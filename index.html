@@ -298,7 +298,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 
   <div class="hero-copy">
     <h1 class="up" style="--d:.15s"><span class="sr">Gaushik: </span>Code that<br>sees ahead</h1>
-    <p class="up" style="--d:.3s" id="focusText">I'm Gaushik, a student builder teaching cameras to read roads. UrbanPulse spots road damage from a moving city bus.</p>
+    <p class="up" style="--d:.3s" id="focusText">Driven by curiosity, Building intelligent systems and digital experiences where software, cloud, and AI come together.</p>
   </div>
 
   <div class="stage" id="stage">
@@ -333,12 +333,6 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
   <aside class="picker side" style="--d:.45s" aria-label="Customise the page">
     <p class="lbl">Choose your vibe</p>
     <div class="sws" id="sws"></div>
-    <p class="lbl">Pick a focus</p>
-    <div class="focus" id="focus" role="group" aria-label="Focus">
-      <button class="fc" aria-pressed="true" data-k="ai">AI</button>
-      <button class="fc" aria-pressed="false" data-k="web">Web</button>
-      <button class="fc" aria-pressed="false" data-k="app">App</button>
-    </div>
   </aside>
 
   <div class="foot l up" style="--d:.6s">
@@ -357,11 +351,11 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
     <h2 class="title rv">About <span class="o">me</span></h2>
     <div class="about">
       <div>
-        <p class="statement" id="statement">I'm a student developer from India who likes turning ideas into things people actually use. I build AI that reads the road, apps that organise a day, and interfaces that feel alive when you touch them.</p>
+        <p class="statement" id="statement">I'm a computer science student and aspiring software developer from India, passionate about building meaningful digital experiences. From intelligent AI-powered solutions to practical applications and interactive interfaces, I turn ideas into technology that solves real-world problems.</p>
         <div class="stats">
-          <div class="stat glass rv" style="--d:.05s"><b data-n="4" data-s="+">0</b><span>Projects built</span></div>
-          <div class="stat glass rv" style="--d:.15s"><b data-n="1">0</b><span>Hackathon entry, SIH 2026</span></div>
-          <div class="stat glass rv" style="--d:.25s"><b data-n="2">0</b><span>Platforms: Android + Linux</span></div>
+          <div class="stat glass rv" style="--d:.05s"><b data-n="4">0</b><span>Projects built</span></div>
+          <div class="stat glass rv" style="--d:.15s"><b data-n="2">0</b><span>Hackathons</span></div>
+          <div class="stat glass rv" style="--d:.25s"><b data-n="3" data-pad="2">00</b><span>Focus Areas<br>AI · Agents · Software</span></div>
         </div>
       </div>
       <div class="me glass tilt rv" id="me">
@@ -483,11 +477,6 @@ const THEMES=[
   {word:'BUILD',glyph:'</>',c1:'#041A53',c2:'#0059FF',deep:'#030923',label:'Blue'},
   {word:'DEPLOY',glyph:'▶',c1:'#12803f',c2:'#3fdc7e',label:'Green'}
 ];
-const FOCUS={
-  ai:'I\'m Gaushik, a student builder teaching cameras to read roads. UrbanPulse spots road damage from a moving city bus.',
-  web:'Interfaces with motion and taste. Every page I build should feel alive the second you touch it.',
-  app:'Apps for the daily grind: habits, routines and reminders that run on Android and Linux.'
-};
 /* -------------------- */
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -569,12 +558,6 @@ function startAuto(){
   },5200);
 }
 
-/* focus chips */
-$$('.fc').forEach(b=>b.addEventListener('click',()=>{
-  $$('.fc').forEach(x=>x.setAttribute('aria-pressed',x===b));
-  const p=$('#focusText');p.style.opacity=0;
-  setTimeout(()=>{p.textContent=FOCUS[b.dataset.k];p.style.opacity=1},200);
-}));
 
 /* intro */
 splat();
@@ -595,7 +578,7 @@ const words=$$('.w',st);
 /* reveal + counters + bars */
 function count(el){
   const n=+el.dataset.n,s=el.dataset.s||'',t0=performance.now(),d=1500;
-  (function f(t){const k=clamp((t-t0)/d,0,1),e=1-Math.pow(1-k,4);el.textContent=Math.round(n*e)+s;if(k<1)requestAnimationFrame(f)})(t0);
+  (function f(t){const k=clamp((t-t0)/d,0,1),e=1-Math.pow(1-k,4);el.textContent=String(Math.round(n*e)).padStart(+el.dataset.pad||0,'0')+s;if(k<1)requestAnimationFrame(f)})(t0);
 }
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;
