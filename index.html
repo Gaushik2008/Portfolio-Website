@@ -110,15 +110,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .fc[aria-pressed="true"]{background:#fff;color:var(--ink)}
 
 .foot{grid-row:2;display:flex;align-items:center;z-index:4}
-.foot.l{grid-column:1;gap:.6rem}
+.foot.l{grid-column:1;gap:.6rem;flex-wrap:wrap}
 .foot.c{grid-column:2;justify-content:center;gap:.9rem;font-family:var(--display);font-size:.85rem;letter-spacing:.04em;text-transform:uppercase}
 .foot.c::before,.foot.c::after{content:"";width:3.4rem;height:1.5px;background:rgba(255,255,255,.7)}
 .foot.c span{position:relative}
 .foot.c span::after{content:"";position:absolute;left:50%;top:140%;width:6px;height:6px;border-radius:50%;background:#fff;animation:drop 1.6s ease-in-out infinite}
 @keyframes drop{0%{transform:translate(-50%,-4px);opacity:0}40%{opacity:1}100%{transform:translate(-50%,10px);opacity:0}}
 .foot.r{grid-column:3;justify-content:flex-end}
-.soc{width:2.1rem;height:2.1rem;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:800;border:1.5px solid rgba(255,255,255,.55);opacity:.9;transition:.3s var(--ease)}
-.soc:hover{background:#fff;color:var(--ink);transform:translateY(-3px) rotate(-8deg)}
+.soc{display:inline-flex;align-items:center;gap:.45rem;height:2.3rem;padding:0 .95rem 0 .8rem;border-radius:999px;font-size:.78rem;font-weight:700;border:1.5px solid rgba(255,255,255,.6);transition:.3s var(--ease)}
+.soc svg{width:1rem;height:1rem;fill:currentColor;flex:none}
+.soc.ico{width:2.3rem;padding:0;justify-content:center}
+.soc.ico svg{width:1.1rem;height:1.1rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.soc:hover{background:#fff;color:var(--ink);transform:translateY(-3px)}
 
 /* sections */
 .sec{padding-block:clamp(4.5rem,11vw,9rem);position:relative;scroll-margin-top:3rem}
@@ -201,16 +204,17 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 
 /* certifications */
 .cgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
-.cert{padding:1.5rem;min-height:15rem;display:flex;flex-direction:column;gap:.5rem;overflow:hidden;transition:transform .5s var(--ease)}
+.cert{padding:1rem 1rem 1.3rem;display:flex;flex-direction:column;gap:.45rem;overflow:hidden;transition:transform .5s var(--ease)}
 .cert:hover{transform:translateY(-10px) rotate(-1.2deg)}
-.cert::before{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .9s var(--ease)}
+.cert::before{content:"";position:absolute;z-index:2;pointer-events:none;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .9s var(--ease)}
 .cert:hover::before{left:130%}
-.seal{width:3.2rem;height:3.2rem;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;font-family:var(--display);font-size:1.4rem;margin-bottom:.6rem;transition:transform .8s var(--ease)}
-.cert:hover .seal{transform:rotate(360deg)}
-.cert h3{margin:0;font-size:1.15rem;line-height:1.25}
-.cert p{margin:0;font-size:.84rem;color:var(--fg2)}
-.cert .yr{margin-top:auto;font-family:var(--display);font-size:1.5rem}
-.cert .tag{align-self:flex-start}
+.cthumb{display:block;border-radius:.8rem;overflow:hidden;background:#fff;aspect-ratio:1.38;margin-bottom:.5rem}
+.cthumb img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.cert:hover .cthumb img{transform:scale(1.06)}
+.cert h3{margin:0;font-size:1.1rem;line-height:1.25;padding-inline:.3rem}
+.cert p{margin:0;font-size:.86rem;color:var(--fg2);padding-inline:.3rem}
+.cert .go{padding-inline:.3rem}
+.cert:hover .go b{transform:translate(4px,-4px)}
 
 /* contact */
 .big{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(3.4rem,12vw,12rem);line-height:.9;margin:0 0 clamp(2rem,4vw,3.4rem)}
@@ -223,8 +227,10 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 .copy{font-size:.8rem;font-weight:700;padding:.5rem .9rem;border-radius:999px;border:1.5px solid #fff;transition:.3s}
 .copy:hover{background:#fff;color:var(--ink)}
 .socs{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.4rem}
-.socs a{font-weight:700;font-size:.9rem;padding:.6rem 1.1rem;border-radius:999px;border:1.5px solid rgba(255,255,255,.6);transition:.3s var(--ease)}
+.socs a{display:inline-flex;align-items:center;gap:.55rem;font-weight:700;font-size:.9rem;padding:.6rem 1.1rem;border-radius:999px;border:1.5px solid rgba(255,255,255,.6);transition:.3s var(--ease)}
 .socs a:hover{background:#fff;color:var(--ink);transform:translateY(-3px)}
+.socs svg{width:1.05rem;height:1.05rem;fill:currentColor}
+.socs a[href^="mailto"] svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .end{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding-block:2rem calc(2rem + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);font-size:.84rem;color:var(--fg2)}
 
 /* cursor */
@@ -340,10 +346,9 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
   </aside>
 
   <div class="foot l up" style="--d:.6s">
-    <a class="soc" href="https://github.com/Gaushik2008" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
-    <a class="soc" href="#" aria-label="LinkedIn">in</a>
-    <a class="soc" href="#" aria-label="Instagram">IG</a>
-    <a class="soc" href="#" aria-label="Behance">Bē</a>
+    <a class="soc" href="https://github.com/Gaushik2008" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+    <a class="soc" href="https://www.linkedin.com/in/gaushikkumarganesan/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+    <a class="soc ico" href="mailto:gaushikkumarganesan@gmail.com" aria-label="Send an email to gaushikkumarganesan@gmail.com" title="Email me"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 8 8 6 8-6"/></svg></a>
   </div>
   <div class="foot c up" style="--d:.7s"><span>Scroll to explore</span></div>
   <div class="foot r up" style="--d:.8s"><a class="pill mag" href="#projects">See all projects
@@ -383,12 +388,12 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
   </div>
   <div class="wrap">
     <div class="sgrid">
-      <article class="skill glass rv" style="--v:.9"><h3>Python <em data-n="90" data-s="%">0</em></h3><p>Scripts, ML pipelines and backend glue.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.8;--d:.08s"><h3>JavaScript <em data-n="80" data-s="%">0</em></h3><p>Interactive pages, animation and tooling.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.75;--d:.16s"><h3>Computer Vision <em data-n="75" data-s="%">0</em></h3><p>Detection and tracking from live camera feeds.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.75"><h3>UI &amp; Motion <em data-n="75" data-s="%">0</em></h3><p>Layout, type and micro-interactions.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.7;--d:.08s"><h3>App Development <em data-n="70" data-s="%">0</em></h3><p>Habit and routine tools for Android and Linux.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.7;--d:.16s"><h3>Linux &amp; Git <em data-n="70" data-s="%">0</em></h3><p>Daily driver, shell workflows, clean history.</p><div class="bar"><i></i></div></article>
+      <article class="skill glass rv" style="--v:.9"><h3>Python</h3><p>Scripts, ML pipelines and backend glue.</p><div class="bar"><i></i></div></article>
+      <article class="skill glass rv" style="--v:.8;--d:.08s"><h3>JavaScript</h3><p>Interactive pages, animation and tooling.</p><div class="bar"><i></i></div></article>
+      <article class="skill glass rv" style="--v:.75;--d:.16s"><h3>Computer Vision</h3><p>Detection and tracking from live camera feeds.</p><div class="bar"><i></i></div></article>
+      <article class="skill glass rv" style="--v:.75"><h3>UI &amp; Motion</h3><p>Layout, type and micro-interactions.</p><div class="bar"><i></i></div></article>
+      <article class="skill glass rv" style="--v:.7;--d:.08s"><h3>App Development</h3><p>Habit and routine tools for Android and Linux.</p><div class="bar"><i></i></div></article>
+      <article class="skill glass rv" style="--v:.7;--d:.16s"><h3>Linux &amp; Git</h3><p>Daily driver, shell workflows, clean history.</p><div class="bar"><i></i></div></article>
     </div>
   </div>
 </section>
@@ -443,10 +448,10 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
     <p class="kick rv">Proof of learning</p>
     <h2 class="title rv">Certifi<span class="o">cations</span></h2>
     <div class="cgrid">
-      <article class="cert glass rv"><div class="seal">1</div><span class="tag">Sample slot</span><h3>Certification name</h3><p>Issuing organisation</p><span class="yr">2026</span></article>
-      <article class="cert glass rv" style="--d:.08s"><div class="seal">2</div><span class="tag">Sample slot</span><h3>Certification name</h3><p>Issuing organisation</p><span class="yr">2026</span></article>
-      <article class="cert glass rv" style="--d:.16s"><div class="seal">3</div><span class="tag">Sample slot</span><h3>Certification name</h3><p>Issuing organisation</p><span class="yr">2025</span></article>
-      <article class="cert glass rv" style="--d:.24s"><div class="seal">4</div><span class="tag">Sample slot</span><h3>Certification name</h3><p>Issuing organisation</p><span class="yr">2025</span></article>
+      <article class="cert glass rv"><a class="cthumb" href="certs/python.pdf" target="_blank" rel="noopener" aria-label="Open Python Programming certificate"><img src="certs/python.jpg" alt="Python Programming certificate from Infosys Springboard" loading="lazy"></a><h3>Python Programming</h3><p>Infosys Springboard</p><a class="go" href="certs/python.pdf" target="_blank" rel="noopener">View certificate <b>↗</b></a></article>
+      <article class="cert glass rv" style="--d:0.08s"><a class="cthumb" href="certs/ibm.pdf" target="_blank" rel="noopener" aria-label="Open Getting Started with Artificial Intelligence certificate"><img src="certs/ibm.jpg" alt="Getting Started with Artificial Intelligence certificate from IBM" loading="lazy"></a><h3>Getting Started with Artificial Intelligence</h3><p>IBM</p><a class="go" href="certs/ibm.pdf" target="_blank" rel="noopener">View certificate <b>↗</b></a></article>
+      <article class="cert glass rv" style="--d:0.16s"><a class="cthumb" href="certs/java.pdf" target="_blank" rel="noopener" aria-label="Open Java (Basic) certificate"><img src="certs/java.jpg" alt="Java (Basic) certificate from HackerRank" loading="lazy"></a><h3>Java (Basic)</h3><p>HackerRank</p><a class="go" href="certs/java.pdf" target="_blank" rel="noopener">View certificate <b>↗</b></a></article>
+      <article class="cert glass rv" style="--d:0.24s"><a class="cthumb" href="certs/git.pdf" target="_blank" rel="noopener" aria-label="Open GitHub Workflow Mastery certificate"><img src="certs/git.jpg" alt="GitHub Workflow Mastery certificate from Unstop" loading="lazy"></a><h3>GitHub Workflow Mastery</h3><p>Unstop</p><a class="go" href="certs/git.pdf" target="_blank" rel="noopener">View certificate <b>↗</b></a></article>
     </div>
   </div>
 </section>
@@ -456,12 +461,13 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
     <p class="kick rv">Say hello</p>
     <h2 class="big rv">Let's build<br><span class="o">something</span></h2>
     <div class="cwrap rv">
-      <a class="say mag" id="say" href="mailto:hello@example.com">Say<br>hi</a>
-      <div class="mail"><code id="email">hello@example.com</code><button class="copy" id="copy" type="button">Copy</button></div>
+      <a class="say mag" id="say" href="mailto:gaushikkumarganesan@gmail.com">Say<br>hi</a>
+      <div class="mail"><code id="email">gaushikkumarganesan@gmail.com</code><button class="copy" id="copy" type="button">Copy</button></div>
     </div>
     <div class="socs rv">
-      <a href="https://github.com/Gaushik2008" target="_blank" rel="noopener">GitHub</a>
-      <a href="#" >LinkedIn</a><a href="#">Instagram</a><a href="#">Behance</a>
+      <a href="https://github.com/Gaushik2008" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/in/gaushikkumarganesan/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="mailto:gaushikkumarganesan@gmail.com" aria-label="Send an email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 8 8 6 8-6"/></svg>Email</a>
     </div>
   </div>
   <div class="wrap" style="margin-top:clamp(3rem,7vw,6rem)"><div class="end"><span>© 2026 Gaushik. Designed and built by hand.</span><a href="#top">Back to top ↑</a></div></div>
@@ -470,7 +476,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 
 <script>
 /* ---- edit these ---- */
-const ME={name:'Gaushik Kumar Ganesan',email:'hello@example.com'};
+const ME={name:'Gaushik Kumar Ganesan',email:'gaushikkumarganesan@gmail.com'};
 const THEMES=[
   {word:'BUILD',glyph:'{ }',c1:'#5b0fa8',c2:'#8a3df0',label:'Violet'},
   {word:'CRAFT',glyph:'✦',c1:'#c81e4a',c2:'#ff5c86',label:'Crimson'},
