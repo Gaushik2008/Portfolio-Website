@@ -82,7 +82,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .hero-copy p{margin:0;max-width:17.5rem;font-size:.84rem;line-height:1.55;color:var(--fg2);min-height:5.2em;transition:opacity .25s}
 .stage{grid-column:2;grid-row:1;position:relative;height:min(64vh,35rem);display:grid;place-items:center;opacity:calc(1 - var(--sy,0)*.9);transform:translateY(calc(var(--sy,0)*70px)) scale(calc(1 - var(--sy,0)*.1))}
 .word{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;transform:translate3d(calc(var(--px,0)*-16px),calc(var(--py,0)*-9px),0)}
-.line{grid-area:1/1;display:flex;font-family:var(--display);font-size:clamp(5.5rem,17.5vw,19.5rem);line-height:.95;color:#fff;transform:scaleY(1.14)}
+.line{grid-area:1/1;display:flex;font-family:var(--display);font-size:clamp(5.5rem,16vw,18rem);line-height:.95;color:#fff;transform:scaleY(1.14)}
 .ch{display:block;overflow:hidden;padding:.04em .004em .02em}
 .ch i{display:block;font-style:normal}
 .splat{position:absolute;left:50%;top:50%;width:min(48rem,100%);aspect-ratio:1.45;translate:-50% -50%;pointer-events:none;z-index:1;transform:translate3d(calc(var(--px,0)*10px),calc(var(--py,0)*6px),0)}
@@ -164,9 +164,12 @@ html:not(.js) .rv{opacity:1;translate:none}
 @keyframes slide{to{transform:translateX(-50%)}}
 .sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
 .skill{padding:1.4rem}
-.skill h3{margin:0;display:flex;justify-content:space-between;align-items:baseline;font-size:1.05rem}
+.skill h3{margin:0;display:flex;align-items:center;gap:.8rem;font-size:1.1rem}
+.si{width:2.6rem;height:2.6rem;border-radius:.8rem;background:#fff;display:grid;place-items:center;flex:none;box-shadow:0 8px 20px rgba(0,0,0,.2);transition:transform .5s var(--ease)}
+.si svg{width:1.55rem;height:1.55rem}
+.skill:hover .si{transform:rotate(-8deg) scale(1.08)}
 .skill h3 em{font-style:normal;font-family:var(--display);font-weight:400;font-size:1.5rem;font-variant-numeric:tabular-nums}
-.skill p{margin:.4rem 0 1rem;font-size:.86rem;color:var(--fg2)}
+.skill p{margin:.8rem 0 0;font-size:.86rem;color:var(--fg2)}
 .bar{height:6px;border-radius:9px;background:rgba(255,255,255,.2);overflow:hidden}
 .bar i{display:block;height:100%;width:100%;border-radius:inherit;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease) .2s}
 .in .bar i,.bar.in i{transform:scaleX(var(--v))}
@@ -204,7 +207,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 /* certifications */
 .cgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
 .cert{padding:1rem 1rem 1.3rem;display:flex;flex-direction:column;gap:.45rem;overflow:hidden;transition:transform .5s var(--ease)}
-.cert:hover{transform:translateY(-10px) rotate(-1.2deg)}
+.cert:hover{transform:translateY(-6px)}
 .cert::before{content:"";position:absolute;z-index:2;pointer-events:none;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);transition:left .9s var(--ease)}
 .cert:hover::before{left:130%}
 .cthumb{display:block;border-radius:.8rem;overflow:hidden;background:#fff;aspect-ratio:1.38;margin-bottom:.5rem}
@@ -220,7 +223,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 .big .o{color:transparent;-webkit-text-stroke:2px #fff}
 .cwrap{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(1.5rem,4vw,3.5rem)}
 .say{width:clamp(8rem,13vw,11rem);aspect-ratio:1;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;font-family:var(--display);font-size:1.6rem;text-transform:uppercase;text-align:center;line-height:1;transition:background .3s,color .3s,scale .3s;box-shadow:0 18px 50px rgba(0,0,0,.25)}
-.say:hover{scale:1.08}
+.say:hover{scale:1.04;box-shadow:0 22px 56px rgba(0,0,0,.3)}
 .mail{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;min-width:0}
 .mail code{font-family:var(--body);font-weight:700;font-size:clamp(1.1rem,2.6vw,2rem);overflow-wrap:anywhere;user-select:all}
 .copy{font-size:.8rem;font-weight:700;padding:.5rem .9rem;border-radius:999px;border:1.5px solid #fff;transition:.3s}
@@ -230,7 +233,8 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 .socs a:hover{background:#fff;color:var(--ink);transform:translateY(-3px)}
 .socs svg{width:1.05rem;height:1.05rem;fill:currentColor}
 .socs a[href^="mailto"] svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.end{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding-block:2rem calc(2rem + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);font-size:.84rem;color:var(--fg2)}
+#contact{padding-bottom:1rem}
+.end{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 1rem;padding-block:1rem calc(.9rem + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);font-size:.84rem;color:var(--fg2)}
 
 /* cursor */
 .cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid #fff;border-radius:50%;pointer-events:none;z-index:400;mix-blend-mode:difference;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background .3s,opacity .3s}
@@ -288,8 +292,6 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
       <nav class="links down" style="--d:.1s" aria-label="Primary">
         <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a>
       </nav>
-      <a class="pill mag down" style="--d:.2s" href="#contact">Hire me
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i></button>
     </div>
   </div>
@@ -306,7 +308,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 
   <div class="stage" id="stage">
     <div class="word" id="word" aria-hidden="true">
-      <div class="line"><span class="ch"><i>B</i></span><span class="ch"><i>U</i></span><span class="ch"><i>I</i></span><span class="ch"><i>L</i></span><span class="ch"><i>D</i></span></div>
+      <div class="line"><span class="ch"><i>P</i></span><span class="ch"><i>L</i></span><span class="ch"><i>A</i></span><span class="ch"><i>N</i></span></div>
     </div>
     <div class="splat" id="splat" aria-hidden="true"></div>
     <div class="device up" style="--d:.5s">
@@ -387,12 +389,12 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
   </div>
   <div class="wrap">
     <div class="sgrid">
-      <article class="skill glass rv" style="--v:.9"><h3>Python</h3><p>Scripts, ML pipelines and backend glue.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.8;--d:.08s"><h3>JavaScript</h3><p>Interactive pages, animation and tooling.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.75;--d:.16s"><h3>Computer Vision</h3><p>Detection and tracking from live camera feeds.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.75"><h3>UI &amp; Motion</h3><p>Layout, type and micro-interactions.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.7;--d:.08s"><h3>App Development</h3><p>Habit and routine tools for Android and Linux.</p><div class="bar"><i></i></div></article>
-      <article class="skill glass rv" style="--v:.7;--d:.16s"><h3>Linux &amp; Git</h3><p>Daily driver, shell workflows, clean history.</p><div class="bar"><i></i></div></article>
+      <article class="skill glass rv" style="--v:.9"><h3><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3776AB" d="M11.9 2C7.4 2 7.7 4 7.7 4v2h4.3v.7H5.9S3 6.4 3 11s2.5 4.4 2.5 4.4H7v-2.1s-.1-2.5 2.5-2.5h4.3s2.4 0 2.4-2.3V4.4S16.6 2 11.9 2z"/><path fill="#FFD43B" d="M12.1 22c4.5 0 4.2-2 4.2-2v-2h-4.3v-.7h6.1S21 17.6 21 13s-2.5-4.4-2.5-4.4H17v2.1s.1 2.5-2.5 2.5h-4.3s-2.4 0-2.4 2.3v3.5S7.4 22 12.1 22z"/><circle cx="9.2" cy="4.5" r=".85" fill="#fff"/><circle cx="14.8" cy="19.5" r=".85" fill="#fff"/></svg></span>Python</h3><p>Scripts, ML pipelines and backend glue.</p></article>
+      <article class="skill glass rv" style="--v:.8;--d:.08s"><h3><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2.5" fill="#F7DF1E"/><text x="13.2" y="19" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="11" fill="#111">JS</text></svg></span>JavaScript</h3><p>Interactive pages, animation and tooling.</p></article>
+      <article class="skill glass rv" style="--v:.75;--d:.16s"><h3><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#041A53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.2" fill="#8a3df0" stroke="#8a3df0"/></svg></span>Computer Vision</h3><p>Detection and tracking from live camera feeds.</p></article>
+      <article class="skill glass rv" style="--v:.75"><h3><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#F24E1E" d="M5 8.5A3.5 3.5 0 0 1 8.5 5H12v7H8.5A3.5 3.5 0 0 1 5 8.5z" transform="translate(0 -3.5)"/><path fill="#FF7262" d="M12 1.5h3.5a3.5 3.5 0 0 1 0 7H12z"/><path fill="#A259FF" d="M5 12a3.5 3.5 0 0 1 3.5-3.5H12v7H8.5A3.5 3.5 0 0 1 5 12z"/><circle cx="15.5" cy="12" r="3.5" fill="#1ABCFE"/><path fill="#0ACF83" d="M5 15.5A3.5 3.5 0 0 1 8.5 12H12v3.5a3.5 3.5 0 0 1-7 0z" transform="translate(0 3.5) translate(0 -0)"/></svg></span>UI &amp; Motion</h3><p>Layout, type and micro-interactions.</p></article>
+      <article class="skill glass rv" style="--v:.7;--d:.08s"><h3><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#3DDC84"><path d="M5.5 9.5h13V18a1.5 1.5 0 0 1-1.5 1.5h-1v3a1.4 1.4 0 0 1-2.8 0v-3h-2.4v3a1.4 1.4 0 0 1-2.8 0v-3H7A1.5 1.5 0 0 1 5.5 18z"/><path d="M5.5 8.4a6.5 6.5 0 0 1 13 0z"/><rect x="2" y="9.5" width="2.8" height="7" rx="1.4"/><rect x="19.2" y="9.5" width="2.8" height="7" rx="1.4"/></g><path d="M8 2.8l1.4 2M16 2.8l-1.4 2" stroke="#3DDC84" stroke-width="1.2" stroke-linecap="round"/><circle cx="9.4" cy="6" r=".8" fill="#fff"/><circle cx="14.6" cy="6" r=".8" fill="#fff"/></svg></span>App Development</h3><p>Habit and routine tools for Android and Linux.</p></article>
+      <article class="skill glass rv" style="--v:.7;--d:.16s"><h3><span class="si"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.4" y="4.4" width="15.2" height="15.2" rx="2.4" transform="rotate(45 12 12)" fill="#F05032"/><g fill="#fff"><circle cx="12" cy="7.6" r="1.7"/><circle cx="12" cy="16.4" r="1.7"/><circle cx="16.2" cy="12.8" r="1.7"/></g><path d="M12 8v8M12 11.3l3.3 1.4" stroke="#fff" stroke-width="1.5" fill="none"/></svg></span>Linux &amp; Git</h3><p>Daily driver, shell workflows, clean history.</p></article>
     </div>
   </div>
 </section>
@@ -408,7 +410,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
           <div class="chips"><span class="tag">AI</span><span class="tag">Computer Vision</span><span class="tag">SIH 2026</span></div>
           <h3>UrbanPulse</h3>
           <p>Cameras on city buses watch the road as they drive and flag its condition, so repair teams get a live map of where the surface is failing. Built with team HEXA_MINDS_6 for Smart India Hackathon 2026.</p>
-          <span class="go">Case study soon <b>↗</b></span>
+          <a class="go" href="https://github.com/Gaushik2008" target="_blank" rel="noopener">View on GitHub <b>↗</b></a>
         </div>
       </article>
       <article class="card glass tilt rv" style="--d:.1s">
@@ -426,7 +428,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
           <div class="chips"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
           <h3>This portfolio</h3>
           <p>A single-file site with a colour-cycling hero, scroll-driven reveals, tilt cards and magnetic buttons. Every colour and word comes from a short list at the top of the script.</p>
-          <span class="go">You're looking at it <b>↗</b></span>
+          <a class="go" href="https://github.com/Gaushik2008/portfolio-claude" target="_blank" rel="noopener">View on GitHub <b>↗</b></a>
         </div>
       </article>
       <article class="card glass tilt rv ghost" style="--d:.1s">
@@ -435,7 +437,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
           <div class="chips"><span class="tag">Sample slot</span></div>
           <h3>Your next project</h3>
           <p>Replace this card with the next thing you ship. Add a title, two or three tags, a short description and a link.</p>
-          <span class="go">Coming soon <b>↗</b></span>
+          <a class="go" href="https://github.com/Gaushik2008" target="_blank" rel="noopener">View on GitHub <b>↗</b></a>
         </div>
       </article>
     </div>
@@ -460,7 +462,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
     <p class="kick rv">Say hello</p>
     <h2 class="big rv">Let's build<br><span class="o">something</span></h2>
     <div class="cwrap rv">
-      <a class="say mag" id="say" href="mailto:gaushikkumarganesan@gmail.com">Say<br>hi</a>
+      <a class="say" id="say" href="mailto:gaushikkumarganesan@gmail.com">Say<br>hi</a>
       <div class="mail"><code id="email">gaushikkumarganesan@gmail.com</code><button class="copy" id="copy" type="button">Copy</button></div>
     </div>
     <div class="socs rv">
@@ -469,7 +471,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
       <a href="mailto:gaushikkumarganesan@gmail.com" aria-label="Send an email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 8 8 6 8-6"/></svg>Email</a>
     </div>
   </div>
-  <div class="wrap" style="margin-top:clamp(3rem,7vw,6rem)"><div class="end"><span>© 2026 Gaushik. Designed and built by hand.</span><a href="#top">Back to top ↑</a></div></div>
+  <div class="wrap" style="margin-top:clamp(2rem,4vw,3.5rem)"><div class="end"><span>© 2026 Gaushik Kumar Ganesan. Designed and built by hand.</span><a href="#top">Back to top ↑</a></div></div>
 </section>
 </main>
 
@@ -477,10 +479,10 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
 /* ---- edit these ---- */
 const ME={name:'Gaushik Kumar Ganesan',email:'gaushikkumarganesan@gmail.com'};
 const THEMES=[
-  {word:'BUILD',glyph:'{ }',c1:'#5b0fa8',c2:'#8a3df0',label:'Violet'},
-  {word:'CRAFT',glyph:'✦',c1:'#c81e4a',c2:'#ff5c86',label:'Crimson'},
-  {word:'SHIP',glyph:'▶',c1:'#041A53',c2:'#0059FF',deep:'#030923',label:'Blue'},
-  {word:'CODE',glyph:'</>',c1:'#12803f',c2:'#3fdc7e',label:'Green'}
+  {word:'PLAN',glyph:'{ }',c1:'#5b0fa8',c2:'#8a3df0',label:'Violet'},
+  {word:'DESIGN',glyph:'✦',c1:'#c81e4a',c2:'#ff5c86',label:'Crimson'},
+  {word:'BUILD',glyph:'</>',c1:'#041A53',c2:'#0059FF',deep:'#030923',label:'Blue'},
+  {word:'DEPLOY',glyph:'▶',c1:'#12803f',c2:'#3fdc7e',label:'Green'}
 ];
 const FOCUS={
   ai:'I\'m Gaushik, a student builder teaching cameras to read roads. UrbanPulse spots road damage from a moving city bus.',
