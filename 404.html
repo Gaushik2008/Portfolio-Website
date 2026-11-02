@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 · Page not found | Gaushik Kumar Ganesan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--c1:#5E8CD8;--c2:#A8C8FF;--lt:#EEF4FF;--ink:#fff;--display:'Anton','Impact','Arial Narrow',sans-serif;--body:'Figtree',system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(70% 55% at 50% 106%,var(--c2),transparent 70%),radial-gradient(40% 40% at 85% 0%,color-mix(in srgb,var(--c2) 45%,transparent),transparent 70%),var(--c1);color:var(--ink);font-family:var(--body);display:flex;flex-direction:column;align-items:center;overflow-x:hidden;min-height:100svh}
+header{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.2rem clamp(1rem,4vw,3rem)}
+.logo{font-family:'Brush Script MT','Segoe Script',cursive;font-style:italic;font-size:1.6rem;color:#fff;text-decoration:none}
+h1{margin:.4rem 1rem 0;text-align:center;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(1.7rem,4.6vw,3.6rem);line-height:1.05;letter-spacing:.01em}
+.score{margin:.7rem 0 0;font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:color-mix(in srgb,var(--lt) 85%,transparent)}
+main{flex:1;display:flex;align-items:center;justify-content:center;gap:clamp(.2rem,2vw,2rem);width:100%;padding:1rem}
+.four{font-family:var(--display);line-height:.8;font-size:clamp(9rem,30vw,31rem);color:var(--lt);user-select:none;text-shadow:0 20px 50px rgba(20,40,100,.25)}
+.board{width:clamp(9.5rem,28vw,24rem);aspect-ratio:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);position:relative}
+.cell{background:none;border:0;padding:0;cursor:pointer;display:grid;place-items:center;border-right:3px solid var(--lt);border-bottom:3px solid var(--lt);-webkit-tap-highlight-color:transparent}
+.cell:nth-child(3n){border-right:0}.cell:nth-child(n+7){border-bottom:0}
+.cell:disabled{cursor:default}
+.cell svg{width:58%;height:58%;overflow:visible}
+.cell .m{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;stroke-dasharray:140;stroke-dashoffset:140;animation:draw .35s ease forwards}
+.cell .o{stroke:var(--c2);stroke:#CFE0FF;stroke-dasharray:260;stroke-dashoffset:260}
+@keyframes draw{to{stroke-dashoffset:0}}
+.cell:not(:disabled):hover{background:color-mix(in srgb,#fff 12%,transparent)}
+.msg{min-height:1.4em;margin:0;text-align:center;font-weight:600;font-size:.95rem;opacity:.95}
+footer{display:flex;flex-direction:column;align-items:center;gap:1rem;padding:0 1rem 2.2rem}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.pill{font:700 .85rem var(--body);color:var(--c1);background:#fff;border:0;border-radius:999px;padding:.7rem 1.3rem;cursor:pointer;text-decoration:none;box-shadow:0 8px 24px rgba(20,40,100,.2);transition:transform .3s}
+.pill:hover{transform:translateY(-3px)}
+.pill.ghost{background:transparent;color:#fff;border:1.5px solid color-mix(in srgb,var(--lt) 60%,transparent);box-shadow:none}
+@media (max-width:640px){main{gap:0}.four{font-size:clamp(7rem,34vw,12rem)}.board{width:36vw}}
+</style></head>
+<body>
+<header><a class="logo" href="./">Gaushik Kumar Ganesan</a></header>
+<h1>You lost the page.<br>You'll lose this game, too.</h1>
+<p class="score" id="score">Gaushik 0 · You 0</p>
+<main>
+  <div class="four" aria-hidden="true">4</div>
+  <div class="board" id="board" role="grid" aria-label="Tic tac toe"></div>
+  <div class="four" aria-hidden="true">4</div>
+</main>
+<footer>
+  <p class="msg" id="msg">Your move. You're X.</p>
+  <div class="btns"><button class="pill ghost" id="again" type="button">[ Lose again ]</button><a class="pill" href="./">[ Take me home ]</a></div>
+</footer>
+<script>
+(function(){
+var L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+var b=Array(9).fill(''),over=false,me=0,cpu=0,turn=true;
+var board=document.getElementById('board'),msg=document.getElementById('msg'),score=document.getElementById('score');
+var X='<svg viewBox="0 0 100 100"><path class="m" d="M15 15L85 85M85 15L15 85"/></svg>';
+var O='<svg viewBox="0 0 100 100"><circle class="m o" cx="50" cy="50" r="36"/></svg>';
+var cells=[];
+for(var i=0;i<9;i++){(function(i){var c=document.createElement('button');c.className='cell';c.type='button';c.setAttribute('aria-label','Cell '+(i+1));c.addEventListener('click',function(){play(i)});board.appendChild(c);cells.push(c)})(i)}
+function win(s){for(var k=0;k<L.length;k++){var a=L[k];if(s[a[0]]&&s[a[0]]===s[a[1]]&&s[a[1]]===s[a[2]])return s[a[0]]}return s.every(Boolean)?'T':null}
+function mm(s,isO){var w=win(s);if(w==='O')return 1;if(w==='X')return -1;if(w==='T')return 0;var best=isO?-2:2;for(var i=0;i<9;i++){if(s[i])continue;s[i]=isO?'O':'X';var v=mm(s,!isO);s[i]='';if(isO?v>best:v<best)best=v}return best}
+function cpuMove(){var best=-2,mv=[];for(var i=0;i<9;i++){if(b[i])continue;b[i]='O';var v=mm(b,false);b[i]='';if(v>best){best=v;mv=[i]}else if(v===best)mv.push(i)}return mv[Math.floor(Math.random()*mv.length)]}
+function draw(i,m){cells[i].innerHTML=m==='X'?X:O;cells[i].disabled=true}
+function end(w){over=true;cells.forEach(function(c){c.disabled=true});if(w==='O'){cpu++;msg.textContent='Told you. Gaushik wins.'}else if(w==='X'){me++;msg.textContent='Impossible… you actually won.'}else msg.textContent="A draw. That's the best you'll get.";score.textContent='Gaushik '+cpu+' · You '+me}
+function play(i){if(over||b[i]||!turn)return;b[i]='X';draw(i,'X');var w=win(b);if(w)return end(w);turn=false;msg.textContent='Thinking…';setTimeout(function(){var m=cpuMove();b[m]='O';draw(m,'O');var w=win(b);if(w)return end(w);turn=true;msg.textContent='Your move.'},450)}
+document.getElementById('again').addEventListener('click',function(){b=Array(9).fill('');over=false;turn=true;cells.forEach(function(c){c.innerHTML='';c.disabled=false});msg.textContent="Your move. You're X."});
+})();
+</script>
+</body></html>
