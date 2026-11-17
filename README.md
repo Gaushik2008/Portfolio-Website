@@ -34,7 +34,7 @@ The site currently includes content for:
 
 - **About:** a short introduction and profile highlights.
 - **Skills:** a visual overview of technical areas and tools.
-- **Projects:** selected work, including UrbanPulse, M.I.L.O, this portfolio, and FORTIS.
+- **Projects:** selected work, including UrbanPulse, M.I.L.O, this portfolio, and NitroGravity.
 - **Certifications:** certificate previews and links.
 - **Contact:** email, GitHub, and LinkedIn links.
 
@@ -93,7 +93,7 @@ The layout uses flexible sizing, responsive grids, and mobile navigation to adap
 - **UrbanPulse** — an AI-powered, multi-fleet road intelligence concept featuring a priority engine, warranty-based repair routing, and multi-step verification.
 - **M.I.L.O** — an agentic AI companion concept for understanding priorities, planning tasks, and supporting personal productivity.
 - **Portfolio Website** — this single-file portfolio, with animated themes and interactive visual elements.
-- **FORTIS** — Financial Oversight, Risk Tracking & Intelligence System.
+- **NitroGravity** — Financial Oversight, Risk Tracking & Intelligence System.
 
 Project descriptions and destination links are part of the page content. Review them before publishing so that each card points to the correct project repository or demo.
 
