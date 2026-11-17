@@ -93,7 +93,7 @@ The layout uses flexible sizing, responsive grids, and mobile navigation to adap
 - **UrbanPulse** — an AI-powered, multi-fleet road intelligence concept featuring a priority engine, warranty-based repair routing, and multi-step verification.
 - **M.I.L.O** — an agentic AI companion concept for understanding priorities, planning tasks, and supporting personal productivity.
 - **Portfolio Website** — this single-file portfolio, with animated themes and interactive visual elements.
-- **NitroGravity** — Financial Oversight, Risk Tracking & Intelligence System.
+- **NitroGravity** — 3D space mission design game: assemble a rocket, launch it, and read a debrief that names the exact cause of success or failure.
 
 Project descriptions and destination links are part of the page content. Review them before publishing so that each card points to the correct project repository or demo.
 
