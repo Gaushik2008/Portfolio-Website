@@ -147,6 +147,8 @@ html:not(.js) .rv{opacity:1;translate:none}
 .me .ring{position:absolute;inset:-30%;background:conic-gradient(from 0deg,transparent,var(--c2),#fff,transparent 60%);animation:spin 7s linear infinite;opacity:.55}
 .me .mask{position:absolute;inset:3px;border-radius:calc(1.4rem - 3px);background:color-mix(in srgb,var(--c1) 70%,#000);}
 .me .G{position:relative;font-family:var(--display);font-size:clamp(9rem,15vw,14rem);line-height:1;transform:translateZ(60px)}
+.me .photo{position:absolute;inset:3px;width:calc(100% - 6px);height:calc(100% - 6px);object-fit:cover;object-position:50% 30%;border-radius:calc(1.4rem - 3px);display:block}
+.me .shade{position:absolute;left:3px;right:3px;bottom:3px;height:34%;border-radius:0 0 calc(1.4rem - 3px) calc(1.4rem - 3px);background:linear-gradient(180deg,transparent,rgba(8,3,20,.7));pointer-events:none}
 .me .tags{position:absolute;left:1.2rem;right:1.2rem;bottom:1.2rem;display:flex;flex-wrap:wrap;gap:.5rem;z-index:2}
 .tag{font-size:.74rem;font-weight:700;padding:.3rem .7rem;border-radius:999px;background:color-mix(in srgb,var(--c2) 28%,transparent);border:1px solid color-mix(in srgb,var(--lt) 50%,transparent)}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -387,7 +389,7 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
       </div>
       <div class="me glass tilt rv" id="me">
         <div class="ring"></div><div class="mask"></div>
-        <span class="G">G</span>
+        <img class="photo" src="me.jpg" alt="Portrait of Gaushik Kumar Ganesan" width="760" height="821"><span class="shade"></span>
         <div class="tags"><span class="tag">Student</span><span class="tag">Builder</span><span class="tag">India</span></div>
       </div>
     </div>
