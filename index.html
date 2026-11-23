@@ -8,6 +8,7 @@
 <meta property="og:title" content="Gaushik Kumar Ganesan – Portfolio">
 <meta property="og:description" content="Aspiring software developer. Internal SIH 2026 Finalist. CGPA 9.23.">
 <meta name="theme-color" content="#7d0d19">
+<script>try{if(sessionStorage.getItem('vibe')==='purple')location.replace('purple.html')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&display=swap">
 <style>
@@ -102,6 +103,14 @@ h2 em{font:italic 400 .8em var(--serif);color:var(--amber);letter-spacing:0;text
 footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px var(--mono);border-top:1px solid var(--line)}
 .rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s,background .3s}.rv.in{opacity:1;transform:none}
 @media(max-width:900px){.nav{flex-wrap:wrap;gap:10px}.menu{order:3;width:100%;overflow-x:auto;scrollbar-width:none}.menu a{white-space:nowrap}.nav .pill{display:none}.panel{padding-top:175px!important}.dots{display:none}.about{grid-template-columns:1fr}.strip{grid-template-columns:1fr 1fr;gap:12px 0}.strip div:nth-child(3){border:0}.hero{padding-bottom:230px}}
+.vibe{position:fixed;right:calc(2vw - 6px);top:calc(50% + 104px);z-index:20;display:grid;gap:9px;justify-items:center;width:44px}
+.vibe .lbl{margin:0;font:500 9px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-align:center}
+.vibe .sws{display:grid;gap:9px}
+.vibe .sw{width:26px;height:26px;padding:0;border-radius:50%;border:2px solid transparent;outline:2px solid transparent;outline-offset:3px;cursor:pointer;transition:transform .3s,outline-color .3s}
+.vibe .sw:hover{transform:scale(1.15)}
+.vibe .sw[aria-pressed="true"]{outline-color:var(--cream);transform:scale(1.1)}
+#vwipe{position:fixed;inset:0;z-index:60;display:none;pointer-events:all}
+@media(max-width:760px){.vibe{top:auto;bottom:calc(16px + env(safe-area-inset-bottom,0px));right:14px;width:auto;grid-auto-flow:column;align-items:center}.vibe .sws{grid-auto-flow:column}.vibe .lbl{display:none}}
 @media(prefers-reduced-motion:reduce){.panel.active{animation:none}html{scroll-behavior:auto}.rv{transition:none;opacity:1;transform:none}}
 </style>
 </head>
@@ -223,6 +232,29 @@ addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close()});
   var ids=['top','about','skills','projects','certifications','contact'],dots=document.querySelectorAll('.dots a'),links=document.querySelectorAll('.menu a');
   var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var k=ids.indexOf(e.target.id);dots.forEach(function(d,j){d.classList.toggle('on',j===k)});links.forEach(function(l,j){l.classList.toggle('on',j===k-1)})}})},{rootMargin:'-45% 0px -50% 0px'});
   ids.forEach(function(id){so.observe(document.getElementById(id))});
+})();
+</script>
+<aside class="vibe" aria-label="Choose a colour vibe"><p class="lbl">Choose your vibe</p><div class="sws">
+<button class="sw" type="button" aria-label="Red vibe" title="Red" aria-pressed="true" style="background:linear-gradient(135deg,#f8e6d2,#a3182a)"></button>
+<button class="sw" type="button" aria-label="Purple vibe" title="Purple" aria-pressed="false" data-go="purple.html" style="background:linear-gradient(135deg,#e3d2ff,#8a3df0)"></button>
+</div></aside>
+<div id="vwipe" aria-hidden="true"></div>
+<script>
+(function(){
+  var w=document.getElementById('vwipe'),busy=false,RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var BG='radial-gradient(70% 55% at 50% 106%,#8a3df0,transparent 70%),radial-gradient(40% 40% at 85% 0%,rgba(138,61,240,.45),transparent 70%),#5b0fa8';
+  document.querySelectorAll('.vibe .sw[data-go]').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(busy)return;busy=true;
+      try{sessionStorage.setItem('vibe','purple')}catch(e){}
+      var go=b.getAttribute('data-go');
+      if(RM||!w.animate){location.href=go;return}
+      var r=b.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,R=Math.hypot(innerWidth,innerHeight);
+      w.style.background=BG;w.style.display='block';
+      w.animate([{clipPath:'circle(0px at '+x+'px '+y+'px)'},{clipPath:'circle('+R+'px at '+x+'px '+y+'px)'}],{duration:900,easing:'cubic-bezier(.65,0,.2,1)'}).onfinish=function(){location.href=go};
+    });
+  });
+  addEventListener('pageshow',function(e){if(e.persisted){busy=false;w.style.display='none'}});
 })();
 </script>
 </body>
