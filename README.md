@@ -26,7 +26,14 @@ A single-file, interactive personal portfolio built with **HTML, CSS, and vanill
 
 ## Overview
 
-This portfolio is designed as a compact, dependency-light website rather than a framework-based application. Its main experience is contained in `index.html`, so it can be opened directly in a browser or hosted as a static site.
+This portfolio is designed as a compact, dependency-light website rather than a framework-based application. It ships in **two vibes**, each a complete single-file design, so it can be opened directly in a browser or hosted as a static site.
+
+| Vibe | File | Design |
+| --- | --- | --- |
+| **Red** (default) | `index.html` | Crimson redesign with a vortex hero, glass cards, and a round profile photo. This is what opens first. |
+| **Purple** | `purple.html` | The earlier violet design with the signature-style logo and floating laptop hero. |
+
+A **Choose your vibe** picker switches between them (see [Two vibes](#two-vibes)).
 
 The visual direction combines oversized display typography, a colour-changing gradient background, a floating interactive hero illustration, translucent surfaces, and motion-based section reveals. The content is organized into clear sections so visitors can quickly learn about my work and find ways to connect.
 
@@ -49,12 +56,12 @@ The site currently includes content for:
 - Large animated headline that cycles through **PLAN**, **DESIGN**, **BUILD**, and **DEPLOY**.
 - Floating device illustration with pointer-based parallax and drag interaction.
 - Decorative particle/firefly canvas effect.
-- Theme selector with animated colour transitions.
+- **Choose your vibe** picker with a layered wave transition between the red and purple designs.
 - Introductory loading animation.
 
 ### Visual design and navigation
 
-- Violet and pastel-blue colour themes.
+- Two complete vibes: red (default) and purple.
 - Responsive navigation with a mobile menu.
 - Fixed navigation bar with a scroll-state treatment.
 - Scroll progress indicator and active-section navigation state.
@@ -116,13 +123,25 @@ The page loads Google Fonts (Anton and Figtree) from Google Fonts. An internet c
 
 ---
 
+## Two vibes
+
+- **Default:** a first-time visitor always lands on the red design (`index.html`).
+- **Picker:** the red design shows the picker on its first screen only. The purple design shows it in its hero. Clicking a swatch plays a wave transition that starts at the swatch, then opens the other design.
+- **Remembered per session:** the choice is stored in `sessionStorage` (`vibe`), so reloading or returning to the home page keeps the chosen vibe until the tab or browser session ends. Opening the link in a new session starts on red again.
+- **No lag:** each page prefetches the other, and the arriving page skips its loader and plays a short staggered entrance. Visitors with `prefers-reduced-motion` get an instant switch.
+- **404 page:** `404.html` follows the chosen vibe.
+
 ## Project structure
 
-The repository is intentionally simple. The main website is contained in `index.html`.
+The repository is intentionally simple. Each vibe is a single self-contained HTML file.
 
 ```text
 Portfolio-Website/
-├── index.html          # Main page: markup, styles, and JavaScript
+├── index.html          # Red vibe (default): markup, styles, JavaScript, vibe picker
+├── purple.html         # Purple vibe: markup, styles, JavaScript, vibe picker
+├── 404.html            # Tic-tac-toe 404 page, coloured by the chosen vibe
+├── photo.jpg           # Profile photo
+├── resume.pdf          # Resume (opened from the red design)
 ├── README.md           # Project documentation
 └── certs/              # Certificate preview images and PDF files (if included)
     ├── python.jpg
@@ -179,7 +198,7 @@ Stop the server with `Ctrl+C`.
 
 ## Customize the portfolio
 
-Most frequently changed profile settings are grouped near the beginning of the main script in `index.html`.
+Most frequently changed profile settings are grouped near the beginning of the main script. The hero words, `ME` details, and `VIBES` array described below live in `purple.html`; the red design (`index.html`) keeps its text directly in the HTML and its colours in the `:root` CSS variables (`--red`, `--red2`, `--deep`, `--cream`, `--amber`). Content such as projects, skills, and links should be updated in **both** files.
 
 ### 1. Update your name and email
 
@@ -211,7 +230,7 @@ Each entry controls one hero headline and its corresponding device symbol. Keep 
 
 ### 3. Customize the colour themes
 
-Find the `VIBES` array. Each theme contains:
+In `purple.html`, find the `VIBES` array. The first entry is the violet palette; the second entry (`label: 'Red'`, with an `href`) is the link to the red design, so its colours only affect the transition. Each theme contains:
 
 - `label`: accessible name and tooltip for the theme selector.
 - `bg`: primary background colour.
@@ -220,6 +239,7 @@ Find the `VIBES` array. Each theme contains:
 - `lt`: lighter highlight colour.
 - `tx`: foreground text colour.
 - `gp` and `tr`: gradient presentation values.
+- `href` (optional): makes the swatch open another page instead of recolouring the current one.
 
 Example:
 
@@ -325,6 +345,7 @@ These measures do not replace a full accessibility audit. When changing the page
 | Certificate image is missing | Confirm the filename, extension, letter case, and path under `certs/`. |
 | Certificate PDF does not open | Confirm the matching PDF exists and the link points to the correct file. |
 | Email copy button does not work | Clipboard access may require HTTPS or localhost. Use the displayed email address as a fallback. |
+| Switching vibes does nothing or loops | Clear the tab's session storage (`vibe`) and reload. Both pages must be served from the same origin. |
 | Theme or animation does not respond | Check the browser console for JavaScript errors and confirm the relevant element IDs still exist. |
 | Mobile menu does not open | Check that the menu and burger element IDs have not been changed independently of the script. |
 | Project link is incorrect | Update the corresponding project card's `href` in `index.html`. |
