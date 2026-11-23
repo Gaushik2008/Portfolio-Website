@@ -106,7 +106,8 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
 @media(max-width:900px){.nav{flex-wrap:wrap;gap:10px}.menu{order:3;width:100%;overflow-x:auto;scrollbar-width:none}.menu a{white-space:nowrap}.nav .pill{display:none}.panel{padding-top:175px!important}.dots{display:none}.about{grid-template-columns:1fr}.strip{grid-template-columns:1fr 1fr;gap:12px 0}.strip div:nth-child(3){border:0}.hero{padding-bottom:230px}}
 .vibe{position:fixed;right:2vw;top:calc(50% + 104px);z-index:20;display:grid;gap:10px;justify-items:end;width:max-content}
 .vibe .lbl{margin:0;font:500 9px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
-.vibe .sws{display:flex;gap:12px;padding:3px}
+.vibe{transition:opacity .35s,visibility .35s}.vibe.off{opacity:0;visibility:hidden;pointer-events:none}
+.vibe .sws{display:flex;gap:22px;padding:3px}
 .vibe .sw{width:26px;height:26px;padding:0;border-radius:50%;border:2px solid transparent;outline:2px solid transparent;outline-offset:3px;cursor:pointer;transition:transform .3s,outline-color .3s}
 .vibe .sw:hover{transform:scale(1.15)}
 .vibe .sw[aria-pressed="true"]{outline-color:var(--cream);transform:scale(1.1)}
@@ -268,6 +269,8 @@ function vibeGo(btn,key,href,lead,fill){
   a.onfinish=function(){location.href=href};
 }
 addEventListener('pageshow',function(e){if(e.persisted){window.__vb=0;document.querySelectorAll('.vt-ov').forEach(function(n){n.remove()})}});
+  var vb=document.querySelector('.vibe'),top0=document.getElementById('top');
+  if(vb&&top0&&window.IntersectionObserver)new IntersectionObserver(function(es){vb.classList.toggle('off',!es[0].isIntersecting)},{threshold:.35}).observe(top0);
   document.querySelectorAll('.vibe .sw[data-go]').forEach(function(b){
     b.addEventListener('click',function(){vibeGo(b,'purple',b.getAttribute('data-go'),'linear-gradient(135deg,#e3d2ff,#8a3df0)','radial-gradient(70% 55% at 50% 106%,#8a3df0,transparent 70%),radial-gradient(40% 40% at 85% 0%,rgba(138,61,240,.45),transparent 70%),#5b0fa8')});
   });
