@@ -15,10 +15,10 @@
 <style>
 /* Layout: full-bleed colour-cycling hero (giant word behind a floating device), then About / Skills / Projects / Certifications / Contact on the same live gradient. */
 :root{
-  --c1:#5b0fa8; --c2:#8a3df0; --surf:#1c0a38; --lt:#e3d2ff;
+  --c1:#7d0d19; --c2:#c4283a; --surf:#3a050b; --lt:#f8e6d2;
   --fg:#ffffff; --fg2:color-mix(in srgb,var(--fg) 82%,transparent); --line:color-mix(in srgb,var(--lt) 38%,transparent);
   --gp:100%; --tr:color-mix(in srgb,var(--c2) 45%,transparent);
-  --glass:color-mix(in srgb,var(--surf) 72%,transparent); --paper:#ffffff; --ink:#120a1f;
+  --glass:color-mix(in srgb,var(--surf) 72%,transparent); --paper:#ffffff; --ink:#2a0508;
   --display:'Anton','Impact','Arial Narrow',sans-serif;
   --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
   --ease:cubic-bezier(.2,.9,.2,1);
@@ -42,7 +42,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 
 /* loader (pure CSS so it always clears) */
 @property --n{syntax:'<integer>';inherits:false;initial-value:0}
-.loader{position:fixed;inset:0;z-index:300;background:#0b0910;display:grid;place-items:center;animation:loaderOut .8s cubic-bezier(.7,0,.2,1) 1.25s forwards}
+.loader{position:fixed;inset:0;z-index:300;background:#0c0507;display:grid;place-items:center;animation:loaderOut .8s cubic-bezier(.7,0,.2,1) 1.25s forwards}
 .loader .sig{height:clamp(4rem,12vw,8rem);max-width:86vw}
 .loader .logo{animation:pulse 1s ease-in-out infinite alternate}
 .loader .count{position:absolute;right:max(1.2rem,env(safe-area-inset-right,0px));bottom:max(1rem,env(safe-area-inset-bottom,0px));font-family:var(--display);font-size:clamp(4rem,14vw,10rem);line-height:1;color:rgba(255,255,255,.9);font-variant-numeric:tabular-nums}
@@ -201,7 +201,7 @@ html:not(.js) .rv{opacity:1;translate:none}
 .go{color:var(--lt);margin-top:auto;padding-top:.4rem;font-weight:700;font-size:.86rem;display:inline-flex;gap:.4rem;align-items:center}
 .go b{display:inline-block;transition:transform .35s var(--ease)}
 a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
-.road::before{content:"";position:absolute;inset:0;background:#1d1233;clip-path:polygon(38% 0,62% 0,100% 100%,0 100%)}
+.road::before{content:"";position:absolute;inset:0;background:#2a0a10;clip-path:polygon(38% 0,62% 0,100% 100%,0 100%)}
 .road::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:6px;translate:-50%;background:repeating-linear-gradient(180deg,#fff 0 18px,transparent 18px 38px);animation:lane 1s linear infinite;clip-path:polygon(40% 0,60% 0,100% 100%,0 100%)}
 @keyframes lane{to{background-position:0 38px}}
 .det{position:absolute;left:44%;top:46%;width:5.5rem;height:3rem;border:2px solid #fff;border-radius:4px;animation:scan 3.4s ease-in-out infinite;z-index:2}
@@ -371,18 +371,18 @@ a.card:hover .go b,.card:hover a.go b{transform:translate(4px,-4px)}
         <svg viewBox="0 0 400 300" role="img" aria-label="Floating laptop illustration">
           <defs>
             <linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c2)"/><stop offset="1" style="stop-color:var(--c1)"/></linearGradient>
-            <linearGradient id="base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbfaff"/><stop offset="1" stop-color="#cfc9de"/></linearGradient>
+            <linearGradient id="base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf6"/><stop offset="1" stop-color="#dcc9c2"/></linearGradient>
           </defs>
-          <rect x="46" y="14" width="308" height="200" rx="16" fill="#15101d"/>
+          <rect x="46" y="14" width="308" height="200" rx="16" fill="#1a0d0f"/>
           <rect x="58" y="26" width="284" height="176" rx="8" fill="url(#scr)"/>
-          <circle cx="200" cy="20" r="2.4" fill="#3a3346"/>
+          <circle cx="200" cy="20" r="2.4" fill="#46302f"/>
           <rect x="74" y="42" width="60" height="7" rx="3.5" fill="#fff" opacity=".85"/>
           <rect x="74" y="56" width="92" height="7" rx="3.5" fill="#fff" opacity=".45"/>
           <rect x="88" y="70" width="46" height="7" rx="3.5" fill="#fff" opacity=".45"/>
           <text class="glyph" id="glyph" x="200" y="158">{ }</text>
           <path d="M58 26h150L128 202H58z" fill="#fff" opacity=".07"/>
           <path d="M18 214h364l14 26q4 10-8 10H12q-12 0-8-10z" fill="url(#base)"/>
-          <rect x="160" y="214" width="80" height="9" rx="4.5" fill="#bdb6cf"/>
+          <rect x="160" y="214" width="80" height="9" rx="4.5" fill="#cdb9b3"/>
           <rect x="30" y="232" width="340" height="2" rx="1" fill="#fff" opacity=".6"/>
         </svg>
       </div></div></div>
@@ -529,8 +529,8 @@ const THEMES=[
   {word:'DEPLOY',glyph:'▶'}
 ];
 const VIBES=[
-  {label:'Violet',bg:'#5b0fa8',surf:'#1c0a38',acc:'#8a3df0',lt:'#e3d2ff',tx:'#ffffff',gp:'100%',tr:'color-mix(in srgb,#8a3df0 45%,transparent)'},
-  {label:'Pastel Blue',bg:'#5E8CD8',surf:'#3F69B5',acc:'#A8C8FF',lt:'#EEF4FF',tx:'#FFFFFF',gp:'100%',tr:'color-mix(in srgb,#A8C8FF 45%,transparent)'}
+  {label:'Crimson',bg:'#7d0d19',surf:'#3a050b',acc:'#c4283a',lt:'#f8e6d2',tx:'#ffffff',gp:'100%',tr:'color-mix(in srgb,#c4283a 45%,transparent)'},
+  {label:'Violet',bg:'#5b0fa8',surf:'#1c0a38',acc:'#8a3df0',lt:'#e3d2ff',tx:'#ffffff',gp:'100%',tr:'color-mix(in srgb,#8a3df0 45%,transparent)'}
 ];
 /* -------------------- */
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
