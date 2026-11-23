@@ -13,11 +13,12 @@
 <style>
 :root{--red:#7d0d19;--red2:#a3182a;--deep:#3a050b;--cream:#f8e6d2;--dim:#e0b7a6;--amber:#f5a524;--glass:rgba(248,230,210,.1);--line:rgba(248,230,210,.26);--sans:'Inter Tight',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:inherit}
-html{scroll-behavior:smooth;background:var(--red);scroll-padding-top:90px}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth;background:var(--red);scroll-padding-top:90px}
 body{margin:0;font:400 17px/1.55 var(--sans);color:var(--cream);background:radial-gradient(120% 90% at 70% 20%,var(--red2),var(--red) 45%,var(--deep));background-attachment:fixed;overflow-x:hidden}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .nav{position:fixed;z-index:20;top:calc(18px + env(safe-area-inset-top,0px));left:5vw;right:5vw;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nav::before{content:"";position:absolute;inset:-18px -5vw -16px;z-index:-1;pointer-events:none;background:linear-gradient(rgba(58,5,11,.92),rgba(58,5,11,.6) 70%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
 .brand{font:800 clamp(15px,1.6vw,20px) var(--sans);letter-spacing:-.03em;text-decoration:none;padding:11px 20px;border-radius:99px;background:var(--cream);color:var(--red);white-space:nowrap}
 .menu{display:flex;gap:4px;padding:5px;border-radius:99px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .menu a{text-decoration:none;font-size:14px;padding:8px 16px;border-radius:99px;transition:.2s}
@@ -45,8 +46,7 @@ a{color:inherit}
 .strip div:first-child{border:0}
 .strip b{display:block;font:800 22px var(--sans);letter-spacing:-.03em}
 .strip span{color:var(--dim);font-size:13px}
-.panel{display:none;min-height:100vh}.panel.active{display:block;animation:pin .5s}.hero.panel.active{display:flex}
-@keyframes pin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.panel{min-height:100vh;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start}
 section.s{padding:140px 5vw 60px}
 .head{margin-bottom:44px}
 h2{margin:0;font:800 clamp(46px,9vw,140px)/.88 var(--sans);letter-spacing:-.06em;text-transform:uppercase}
@@ -61,6 +61,7 @@ h2 em{font:italic 400 .8em var(--serif);color:var(--amber);letter-spacing:0;text
 .facts b{display:block;font:800 30px var(--sans);letter-spacing:-.04em;color:var(--cream)}
 .facts span{font-size:13px;color:var(--dim)}
 .me{display:grid;place-items:center;text-align:center;gap:16px}
+.glass.me{background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0}
 .me img{width:min(260px,70%);aspect-ratio:1;object-fit:cover;border-radius:50%;border:3px solid var(--amber);box-shadow:0 0 0 10px rgba(248,230,210,.1),0 24px 60px rgba(40,0,6,.45)}
 .me b{font:800 22px var(--sans);letter-spacing:-.03em;display:block}
 .me span{color:var(--dim);font-size:14px}
@@ -188,11 +189,8 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
   document.querySelectorAll('.rv').forEach(function(el,n){el.style.transitionDelay=(n%4)*90+'ms';io.observe(el)});
   var ids=['top','about','skills','projects','certifications','contact'],dots=document.querySelectorAll('.dots a'),links=document.querySelectorAll('.menu a');
-  function show(){var h=location.hash.slice(1);if(ids.indexOf(h)<0)h='top';var k=ids.indexOf(h);
-    ids.forEach(function(id){document.getElementById(id).classList.toggle('active',id===h)});
-    dots.forEach(function(d,j){d.classList.toggle('on',j===k)});links.forEach(function(l,j){l.classList.toggle('on',j===k-1)});
-    size();window.scrollTo(0,0)}
-  addEventListener('hashchange',show);show();
+  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var k=ids.indexOf(e.target.id);dots.forEach(function(d,j){d.classList.toggle('on',j===k)});links.forEach(function(l,j){l.classList.toggle('on',j===k-1)})}})},{rootMargin:'-45% 0px -50% 0px'});
+  ids.forEach(function(id){so.observe(document.getElementById(id))});
 })();
 </script>
 </body>
