@@ -45,7 +45,9 @@ a{color:inherit}
 .strip div:first-child{border:0}
 .strip b{display:block;font:800 22px var(--sans);letter-spacing:-.03em}
 .strip span{color:var(--dim);font-size:13px}
-section.s{padding:120px 5vw 20px}
+.panel{display:none;min-height:100vh}.panel.active{display:block;animation:pin .5s}.hero.panel.active{display:flex}
+@keyframes pin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+section.s{padding:140px 5vw 60px}
 .head{margin-bottom:44px}
 h2{margin:0;font:800 clamp(46px,9vw,140px)/.88 var(--sans);letter-spacing:-.06em;text-transform:uppercase}
 h2 em{font:italic 400 .8em var(--serif);color:var(--amber);letter-spacing:0;text-transform:none;margin-right:.1em}
@@ -86,8 +88,8 @@ h2 em{font:italic 400 .8em var(--serif);color:var(--amber);letter-spacing:0;text
 .contact .ctas{justify-content:center}
 footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px var(--mono);border-top:1px solid var(--line)}
 .rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s,background .3s}.rv.in{opacity:1;transform:none}
-@media(max-width:900px){.menu{display:none}.dots{display:none}.about{grid-template-columns:1fr}.strip{grid-template-columns:1fr 1fr;gap:12px 0}.strip div:nth-child(3){border:0}.hero{padding-bottom:230px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{transition:none;opacity:1;transform:none}}
+@media(max-width:900px){.nav{flex-wrap:wrap;gap:10px}.menu{order:3;width:100%;overflow-x:auto;scrollbar-width:none}.menu a{white-space:nowrap}.nav .pill{display:none}.panel{padding-top:175px!important}.dots{display:none}.about{grid-template-columns:1fr}.strip{grid-template-columns:1fr 1fr;gap:12px 0}.strip div:nth-child(3){border:0}.hero{padding-bottom:230px}}
+@media(prefers-reduced-motion:reduce){.panel.active{animation:none}html{scroll-behavior:auto}.rv{transition:none;opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -99,7 +101,7 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
 <div class="dots" aria-hidden="true"><a href="#top" class="on"></a><a href="#about"></a><a href="#skills"></a><a href="#projects"></a><a href="#certifications"></a><a href="#contact"></a></div>
 
 <main>
-<div class="hero" id="top">
+<div class="hero panel" id="top">
   <div class="beam" aria-hidden="true"></div>
   <canvas id="vortex" aria-hidden="true"></canvas>
   <div class="in">
@@ -118,7 +120,7 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
   </div>
 </div>
 
-<section class="s" id="about">
+<section class="s panel" id="about">
   <div class="head rv"><h2><em>About</em>me</h2></div>
   <div class="about">
     <div class="glass rv">
@@ -130,7 +132,7 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
   </div>
 </section>
 
-<section class="s" id="skills">
+<section class="s panel" id="skills">
   <div class="head rv"><h2><em>My</em>skills</h2></div>
   <div class="skills">
     <div class="glass rv"><h3>Languages</h3><div class="tags"><span>Python</span><span>Java</span><span>C</span><span>JavaScript</span><span>HTML</span><span>CSS</span></div></div>
@@ -139,7 +141,7 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
   </div>
 </section>
 
-<section class="s" id="projects">
+<section class="s panel" id="projects">
   <div class="head rv"><h2><em>Selected</em>projects</h2></div>
   <div class="work">
     <a class="glass proj rv" href="https://github.com/Gaushik2008" target="_blank" rel="noopener"><span class="n">01 · AI · Computer vision</span><h3>UrbanPulse</h3><p>A road intelligence system that turns routine bus journeys into road-condition data. A bus-mounted camera and computer vision detect and classify potholes and other anomalies, so repairs can be prioritised automatically.</p><div class="go"><span>View on GitHub</span><span class="arrow">→</span></div></a>
@@ -149,7 +151,7 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
   </div>
 </section>
 
-<section class="s" id="certifications">
+<section class="s panel" id="certifications">
   <div class="head rv"><h2><em>Proof of</em>learning</h2></div>
   <div class="certs">
     <a class="glass cert rv" href="certs/python.jpg" target="_blank" rel="noopener"><small>Infosys Springboard</small><h3>Python Programming</h3><div class="go"><span>View certificate</span><span class="arrow">→</span></div></a>
@@ -159,7 +161,7 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
   </div>
 </section>
 
-<section class="contact" id="contact">
+<section class="contact panel" id="contact">
   <p class="eyebrow rv" style="justify-content:center">Open to opportunities</p>
   <p class="lead rv">Let’s build something</p>
   <a class="mail rv" href="mailto:gaushikkumarganesan@gmail.com">gaushikkumarganesan@gmail.com</a>
@@ -186,8 +188,11 @@ footer{text-align:center;padding:30px 5vw 40px;color:var(--dim);font:500 12px va
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
   document.querySelectorAll('.rv').forEach(function(el,n){el.style.transitionDelay=(n%4)*90+'ms';io.observe(el)});
   var ids=['top','about','skills','projects','certifications','contact'],dots=document.querySelectorAll('.dots a'),links=document.querySelectorAll('.menu a');
-  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var k=ids.indexOf(e.target.id);dots.forEach(function(d,j){d.classList.toggle('on',j===k)});links.forEach(function(l,j){l.classList.toggle('on',j===k-1)})}})},{rootMargin:'-45% 0px -50% 0px'});
-  ids.forEach(function(id){so.observe(document.getElementById(id))});
+  function show(){var h=location.hash.slice(1);if(ids.indexOf(h)<0)h='top';var k=ids.indexOf(h);
+    ids.forEach(function(id){document.getElementById(id).classList.toggle('active',id===h)});
+    dots.forEach(function(d,j){d.classList.toggle('on',j===k)});links.forEach(function(l,j){l.classList.toggle('on',j===k-1)});
+    size();window.scrollTo(0,0)}
+  addEventListener('hashchange',show);show();
 })();
 </script>
 </body>
